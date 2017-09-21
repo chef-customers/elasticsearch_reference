@@ -15,6 +15,11 @@ verifier:
 platforms:
   #  - name: ubuntu-16.04
   - name: centos-7.3
+    attributes:
+      elasticsearch:
+        cluster_name: 'myorg-cluster1'
+    tags:
+      es_cluster: 'myorg-cluster1'
 
 suites:
   - name: default

@@ -17,12 +17,26 @@ directory '/var/run/elasticsearch' do
   group 'elasticsearch'
 end
 
+es_cluster_name = node['elasticsearch']['cluster_name'] || 'elasticsearch'
+query = "chef_environment:#{node.chef_environment} AND es_cluster:#{es_cluster_name}"
+Chef::Log.warn "query: #{query}"
+cluster_members = []
+search(:node, query, filter_result: { 'fqdn' => ['fqdn'] }).each do |result|
+  cluster_members << result['fqdn']
+end
+
+Chef::Log.warn "cluster members #{cluster_members}"
+
 elasticsearch_config = Hash.new.tap do |es_hash|
-  es_hash['cluster.name'] = node['elasticsearch']['cluster_name'] || 'elasticsearch'
+  es_hash['cluster.name'] = es_cluster_name
   es_hash['node.name'] = node['hostname']
   es_hash['network.host'] = node['ipaddress'],
-  es_hash['discovery.type'] = 'ec2' if node['aws']
-  es_hash['cloud.aws.region'] = node['aws']['region'] if node['aws'] && node['aws'].has_key?('region')
+  if node['aws'] && node['aws'].has_key?('region')
+    es_hash['discovery.type'] = 'ec2'
+    es_hash['cloud.aws.region'] = node['aws']['region']
+  else
+    es_hash['discovery.zen.ping.unicast.hosts'] = cluster_members
+  end
   es_hash['http.max_content_length'] = node['elasticsearch']['es_max_content_length']
 end
 
