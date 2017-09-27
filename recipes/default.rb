@@ -87,4 +87,5 @@ elasticsearch_service 'elasticsearch' do
   action :configure
 end
 
-elasticsearch_plugin 'x-pack'
+# example plugin
+# elasticsearch_plugin 'x-pack'
