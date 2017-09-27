@@ -9,3 +9,4 @@ default['java']['oracle']['accept_oracle_download_terms'] = true
 default['elasticsearch']['cluster_name'] = 'myorg-cluster1'
 default['elasticsearch']['es_number_of_shards'] = 5
 default['elasticsearch']['es_max_content_length'] = "1gb"
+default['elasticsearch']['version'] = '5.4.3'
