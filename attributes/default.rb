@@ -8,5 +8,12 @@ default['java']['oracle']['accept_oracle_download_terms'] = true
 # Elasticsearch
 default['elasticsearch']['cluster_name'] = 'myorg-cluster1'
 default['elasticsearch']['es_number_of_shards'] = 5
-default['elasticsearch']['es_max_content_length'] = "1gb"
+default['elasticsearch']['es_max_content_length'] = '1gb'
 default['elasticsearch']['version'] = '5.4.3'
+
+# Sensu
+default['sensu']['use_ssl'] = false
+default['sensu']['rabbitmq']['host'] = '192.168.1.21'
+default['myorg']['sensu']['plugins'] = {
+  'sensu-plugins-elasticsearch' => '1.7.1'
+}

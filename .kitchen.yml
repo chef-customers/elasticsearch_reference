@@ -25,6 +25,7 @@ suites:
   - name: default
     run_list:
       - recipe[elasticsearch_reference::default]
+      - recipe[elasticsearch_reference::sensu]
     verifier:
       inspec_tests:
         - test/smoke/default
