@@ -52,4 +52,3 @@ indices.store.throttle.max_bytes_per_sec: "100mb"
 ## ToDo
  - Demonstrate backups/restores
  - Provisioning example, perhaps with Terraform
- - Companion monitoring cookbook
