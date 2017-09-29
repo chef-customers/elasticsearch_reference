@@ -6,6 +6,16 @@ It's a [wrapper](https://blog.chef.io/2017/02/14/writing-wrapper-cookbooks/) coo
 
 Please refer to the upstream cookbook's [README](https://github.com/elastic/cookbook-elasticsearch/blob/master/README.md) for latest details.
 
+## Recipes
+
+### elasticsearch_reference::default
+
+Installs Elasticsearch with support for clustering and optimal tunings enabled.
+
+### elasticsearch_reference::sensu
+
+Installs a Sensu client with Elasticsearch plugin providing native ElasticSearch instrumentation for monitoring and metrics collection, including: service health and metrics for cluster, node, and more
+
 ## Performance Tuning
 Important! For latest Elasticsearch and hardware recommendations on this topic be sure to ask your Customer Architect for the information from the "Scaling Chef Automate Beyond 50,000 nodes" document.
 
